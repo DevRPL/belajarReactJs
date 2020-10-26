@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DynamicStateFullComponent from '../../component/dynamic/DynamicStateFullComponent';
+import ProductComponent from '../Product/ProductComponent.jsx';
 
 class DynamicStateLessComponent extends Component {
     render() {
@@ -9,6 +10,7 @@ class DynamicStateLessComponent extends Component {
                     name="jamil" 
                     address="bandung"
                 />
+                <ProductComponent />
             </div>
         )
     }
