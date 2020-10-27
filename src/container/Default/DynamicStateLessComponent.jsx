@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import DynamicStateFullComponent from '../../component/dynamic/DynamicStateFullComponent';
-import ProductComponent from '../Product/ProductComponent.jsx';
+import LifeCycle from '../../LifeCycle/LifeCycle.jsx';
 
 class DynamicStateLessComponent extends Component {
     render() {
         return (
             <div>
-                <DynamicStateFullComponent 
+                {/* <DynamicStateFullComponent 
                     name="jamil" 
                     address="bandung"
                 />
-                <ProductComponent />
+                <ProductComponent /> */}
+                <LifeCycle />
             </div>
         )
     }
