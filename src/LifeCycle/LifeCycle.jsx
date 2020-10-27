@@ -16,16 +16,18 @@ class LifeCycle extends Component {
     }
     
     componentDidMount(nextProps, nextState) {
-        console.log("componentDidMount");
         setTimeout(() => {
             this.setState({
                 count: 2
             });
-        }, 3000);
+        }, 2000);
     }
     
     shouldComponentUpdate(prevProps, nextState) {
-        console.log("shouldComponentUpdate");
+        if (nextState.count > 4) {
+            return false;   
+        }
+
         return true;
     }   
 
@@ -41,12 +43,18 @@ class LifeCycle extends Component {
     componentWillUpdate() {
         console.log("componentWillUpdate");
     }
+
+    changeCount = () => {
+        this.setState({
+            count: this.state.count + 1
+        })
+    }
     
     render() {
         console.log("render");
         return(
             <div>
-                <button className="btn">LifeCycle {this.state.count}</button>
+                <button className="btn" onClick={this.changeCount}>LifeCycle {this.state.count}</button>
             </div>
         )
     }
