@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LifeCycle from '../../LifeCycle/LifeCycle.jsx';
+import BLogPost from '../Api/BLogPost/BLogPost.jsx';
 
 class DynamicStateLessComponent extends Component {
     
@@ -12,15 +12,13 @@ class DynamicStateLessComponent extends Component {
             this.setState({
                 showComponent: false
             });    
-        }, 3000);
+        }, 15000);
     }
     
     render() {
         return (
             <div>
-                {
-                    this.state.showComponent ? <LifeCycle /> : null
-                }
+                <BLogPost />
             </div>
         );
     }

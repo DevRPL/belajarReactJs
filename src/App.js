@@ -3,7 +3,7 @@ import DynamicStateLessComponent from './container/Default/DynamicStateLessCompo
 function App() {
   return (
     <div>
-        <p>LifeCycle</p>
+        <p>API</p>
         <hr/>
         <DynamicStateLessComponent />
     </div>
