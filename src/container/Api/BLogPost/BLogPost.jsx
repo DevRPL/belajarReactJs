@@ -36,6 +36,32 @@ class BLogPost extends Component {
 				})
 			})
 		*/
+		
+		this.getPostAPi();
+	}
+
+	getPostAPi = () => {
+		axios({
+			method: 'get',
+			url: 'http://localhost:8000/post',
+			responseType: 'json'
+		})
+		.then(json => {
+			this.setState({
+				post:json.data
+			})
+		})
+	}
+
+	handleRemove = (data) => {
+		axios({
+			method: 'delete',
+			url: 'http://localhost:8000/post/delete/' + data,
+			responseType: 'json'
+		})
+		.then(json => {
+			this.getPostAPi(json);
+		})
 	}
 
   render = () => {
@@ -43,7 +69,7 @@ class BLogPost extends Component {
 		<Fragment>
 			{
 				this.state.post.map(post => {
-					return <Post key={post.id} title={post.title} description={post.description}/>
+					return <Post key={post.id} data={post} remove={this.handleRemove}/>
 				})
 			}
 		</Fragment>
