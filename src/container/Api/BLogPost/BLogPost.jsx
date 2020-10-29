@@ -9,8 +9,9 @@ class BLogPost extends Component {
 		fromBLogPost: {
 			title: '',
 			body: '',
-			description: '',
-		}
+			description: ''
+		},
+		isUpdate: false
 	}
 	componentDidMount() {
 		/*
@@ -59,7 +60,6 @@ class BLogPost extends Component {
 	}
 
 	postDataToAPi = () => {
-		console.log(this.state.fromBLogPost);
 		axios({
 			method: 'post',
 			url: 'http://localhost:8000/post/store',
@@ -68,6 +68,40 @@ class BLogPost extends Component {
 		})
 		.then(json => {
 			this.getPostAPi(json);
+			this.setState({
+				fromBLogPost: {
+					title: '',
+					body: '',
+					description: ''
+				}
+			})
+		}, (err) => {
+			console.log(err);
+		})
+	}
+
+	putDataToAPi = () => {
+		const data = this.state.fromBLogPost;
+		axios({
+			method: 'put',
+			url: 'http://localhost:8000/post/update/' + data.id,
+			data: {
+				title: data.title,
+				body: data.body,
+				description: data.description,
+			},
+			responseType: 'json'
+		})
+		.then(json => {
+			this.getPostAPi(json.data);
+			this.setState({
+				isUpdate: false,
+				fromBLogPost: {
+					title: '',
+					body: '',
+					description: ''
+				}
+			})
 		}, (err) => {
 			console.log(err);
 		})
@@ -83,8 +117,20 @@ class BLogPost extends Component {
 		})
 	}
 
+	handleUpdate = (data) => {
+		console.log(data);
+		this.setState({
+			fromBLogPost: data,
+			isUpdate: true
+		})
+	}
+
 	handleSubmit = () => {
-		this.postDataToAPi();
+		if (this.state.isUpdate) {
+			this.putDataToAPi();
+		} else {
+			this.postDataToAPi();	
+		}
 	}
 
 	handleRemove = (data) => {
@@ -103,15 +149,17 @@ class BLogPost extends Component {
 		<Fragment>
 
 		<div className="form-add-post">
-			<input type="text" name="title" onChange={this.handleFormChange}/><br></br><br></br> 
-			<input type="text" name="body" onChange={this.handleFormChange}/><br></br><br></br> 
-			<textarea name="description" onChange={this.handleFormChange}></textarea> <br></br><br></br>
-			<button onClick={this.handleSubmit}>Simpan</button>
+			<input type="text" name="title" onChange={this.handleFormChange} value={this.state.fromBLogPost.title}/><br></br><br></br> 
+			<input type="text" name="body" onChange={this.handleFormChange}  value={this.state.fromBLogPost.body}/><br></br><br></br> 
+			<textarea name="description" onChange={this.handleFormChange} value={this.state.fromBLogPost.description}></textarea> <br></br><br></br>
+			<button onClick={this.handleSubmit}>
+				{ !this.state.isUpdate ? 'Save': 'Update' }
+			</button>
 		</div><br></br> <br></br>
 
 			{
 				this.state.post.map(post => {
-					return <Post key={post.id} data={post} remove={this.handleRemove}/>
+					return <Post key={post.id} data={post} remove={this.handleRemove} update={this.handleUpdate}/>
 				})
 			}
 		</Fragment>
