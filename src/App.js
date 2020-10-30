@@ -1,12 +1,13 @@
+import { Fragment } from 'react';
 import DynamicStateLessComponent from './container/Default/DynamicStateLessComponent.jsx';
 
 function App() {
   return (
-    <div>
-        <p>API</p>
+    <Fragment>
+        <p>TITLE</p>
         <hr/>
         <DynamicStateLessComponent />
-    </div>
+    </Fragment>
   );
 }
 

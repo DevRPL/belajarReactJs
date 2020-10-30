@@ -1,5 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import BLogPost from '../Api/BLogPost/BLogPost.jsx';
+import { BrowserRouter, Route } from "react-router-dom";
+import ProductComponent from '../Product/ProductComponent.jsx';
+import LifeCycle from '../../LifeCycle/LifeCycle.jsx';
+import PageComponent from '../Global/PageComponent.jsx';
 
 class DynamicStateLessComponent extends Component {
     
@@ -17,9 +21,14 @@ class DynamicStateLessComponent extends Component {
     
     render() {
         return (
-            <div>
-                <BLogPost />
-            </div>
+            <BrowserRouter>
+                <PageComponent />
+                <Fragment>
+                    <Route path="/" exact component={BLogPost} />
+                    <Route path="/product" component={ProductComponent} />
+                    <Route path="/lifeCycle" component={LifeCycle} />
+                </Fragment>
+            </BrowserRouter>
         );
     }
 }
