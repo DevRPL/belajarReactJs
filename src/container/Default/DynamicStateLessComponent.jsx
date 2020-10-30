@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import ProductComponent from '../Product/ProductComponent.jsx';
 import LifeCycle from '../../LifeCycle/LifeCycle.jsx';
 import PageComponent from '../Global/PageComponent.jsx';
+import DetailPost from '../Api/BLogPost/DetailPost.jsx';
 
 class DynamicStateLessComponent extends Component {
     
@@ -25,6 +26,7 @@ class DynamicStateLessComponent extends Component {
                 <PageComponent />
                 <Fragment>
                     <Route path="/" exact component={BLogPost} />
+                    <Route path="/detail-post/:id" component={DetailPost} />
                     <Route path="/product" component={ProductComponent} />
                     <Route path="/lifeCycle" component={LifeCycle} />
                 </Fragment>

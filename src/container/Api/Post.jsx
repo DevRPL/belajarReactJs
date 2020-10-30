@@ -6,7 +6,7 @@ const Post = (props) => {
 		<div className="post">
 			<div className="section-title">
 				<div className="content">
-					<p className="title">{props.data.title}</p>
+					<p className="title" onClick={ () => props.goDetail(props.data.id)}>{props.data.title}</p>
 					<p className="desc">{props.data.description}</p>
 					<br/>
 					<button onClick={ () => props.update(props.data) }>Update</button>

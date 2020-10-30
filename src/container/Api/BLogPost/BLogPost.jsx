@@ -144,6 +144,10 @@ class BLogPost extends Component {
 		})
 	}
 
+	handleDetail = (id) => {
+		this.props.history.push(`/detail-post/${id}`);
+	}
+
   render = () => {
     return (
 		<Fragment>
@@ -159,7 +163,7 @@ class BLogPost extends Component {
 
 			{
 				this.state.post.map(post => {
-					return <Post key={post.id} data={post} remove={this.handleRemove} update={this.handleUpdate}/>
+					return <Post key={post.id} data={post} remove={this.handleRemove} update={this.handleUpdate} goDetail={this.handleDetail}/>
 				})
 			}
 		</Fragment>
