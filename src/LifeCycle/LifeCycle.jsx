@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './LifeCycle.css';
 
 class LifeCycle extends Component {
@@ -51,13 +52,19 @@ class LifeCycle extends Component {
     }
     
     render() {
-        console.log("render");
         return(
             <div>
                 <button className="btn" onClick={this.changeCount}>LifeCycle {this.state.count}</button>
+                <hr></hr>
+                <p>total order : {this.props.order}</p>
             </div>
         )
     }
 }
 
-export default LifeCycle;
+const mapStateToProps = (state) => {
+    return {
+        order: state.total
+    }
+}
+export default connect(mapStateToProps)(LifeCycle);

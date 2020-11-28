@@ -17,7 +17,8 @@ class CardComponent extends Component {
                             <div className="card-body">
                                 <h5 className="card-title">Card title</h5>
                                 <p className="card-text">Some quick example text</p>
-                                <Counter onCounterChange={(value) => this.props.onCounterChange(value)} />
+                                {/* <Counter onCounterChange={(value) => this.props.onCounterChange(value)} /> */}
+                                <Counter />
                             </div>
                         </div>
                     </div>

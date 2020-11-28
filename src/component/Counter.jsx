@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react';
-
+import { connect } from 'react-redux';
 
 class Counter extends Component {
     
-    state = {
+    /* state = {
         order:0
     }
-
+    
     handleCounterChange = (value) => {
         this.props.onCounterChange(value);
     }
@@ -27,18 +27,30 @@ class Counter extends Component {
                 this.handleCounterChange(this.state.order);
             });
         }
-    }   
+    } */
 
     render() {
         return(
             <Fragment>
-                <button className="minus" onClick={this.handleMinus}>-</button>
-                <input type="text" value={this.state.order} readOnly/>
-                <button className="plus" onClick={this.handlePlus}>+</button>
+                <button className="minus" onClick={this.props.handleMinus}>-</button>
+                <input type="text" value={this.props.order} readOnly/>
+                <button className="plus" onClick={this.props.handlePlus}>+</button>
             </Fragment>
         )
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        order: state.total
+    }
+}
 
-export default Counter;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        handlePlus: () => {dispatch({type:'Plus_Order'})},
+        handleMinus: () => {dispatch({type:'Minus_Order'})}
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);

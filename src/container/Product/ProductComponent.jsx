@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './Product.css';
 import CardComponent from './CardComponent';
+import { connect } from 'react-redux';
 
 class ProductComponent extends Component {
 
-    state = {
+    /*state = {
         order:0
     }
 
@@ -12,17 +13,24 @@ class ProductComponent extends Component {
         this.setState({
             order: newValue
         })
-    }
-
+    } */
+    
     render() {
         return (
             <div className="p-3">
-                <CardComponent onCounterChange={(value) => this.handleCounterChange(value)}>
-                    <span className="badge-primary">{this.state.order}</span>
+                {/* <CardComponent onCounterChange={(value) => this.handleCounterChange(value)}> */}
+                <CardComponent>
+                    <span className="badge-primary">{this.props.order}</span>
                 </CardComponent>
             </div>
         )
     }
 }
 
-export default ProductComponent;
+const mapStateToProps = (state) => {
+    return {
+        order: state.total
+    }
+}
+
+export default connect(mapStateToProps)(ProductComponent);
