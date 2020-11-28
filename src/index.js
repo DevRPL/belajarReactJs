@@ -5,30 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-
-const globalState = {
-	total: 0
-}
-
-const rootReducer = (state = globalState, action) => {
-	const totalOrder = state.total;
-	if (action.type === 'Plus_Order') {
-		return {
-			...state,
-			total: totalOrder + 1
-		}
-	} else if (action.type === 'Minus_Order') {
-		let total = 0;
-		if (state.total > 0) {
-			total = totalOrder - 1;
-		}
-		return {
-			...state,
-			total: total
-		}
-	} 
-	return state;
-}
+import rootReducer from './Redux/reducer/GlobalReducer';
 
 const store = createStore(rootReducer);
 
