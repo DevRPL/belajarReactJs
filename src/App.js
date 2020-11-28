@@ -4,9 +4,7 @@ import DynamicStateLessComponent from './container/Default/DynamicStateLessCompo
 function App() {
   return (
     <Fragment>
-        <p>TITLE</p>
-        <hr/>
-        <DynamicStateLessComponent />
+        <DynamicStateLessComponent/>
     </Fragment>
   );
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './Product.css';
 
 class CardComponent extends Component {
@@ -31,18 +31,25 @@ class CardComponent extends Component {
     
     render() {
         return (
-            <div className="card">
-                <div className="img-thumb-prod">
-                    <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2018/1/13/26783827/26783827_277ae360-92a3-4edc-8375-0e8fd2704a83_320_320.jpg" alt="product_image" />
+            <Fragment>
+                <div className="container">
+                    <div className="row">
+                        <div className="card" style={{ width: '18rem' }}>
+                            <div className="card-header">
+                                {this.props.children}
+                            </div>
+                        <img className="card-img-top" src="https://s3.bukalapak.com/img/3114039532/large/Daging_Ayam_Utuh_Frozen_ukuran_08_09_Kg_Etanee.jpg" alt="" />
+                            <div className="card-body">
+                                <h5 className="card-title">Card title</h5>
+                                <p className="card-text">Some quick example text</p>
+                                <button classNameName="minus" onClick={this.handleMinus}>-</button>
+                                <input type="text" value={this.state.order} />
+                                <button classNameName="plus" onClick={this.handlePlus}>+</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p className="product-title">Ayam Colonel Etanee Original</p>
-                <p className="product-price">Rp 52.000</p>
-                <div className="product-price">
-                    <button className="minus" onClick={this.handleMinus}>-</button>
-                    <input type="text" value={this.state.order} />
-                    <button className="plus" onClick={this.handlePlus}>+</button>
-                </div>
-            </div>
+            </Fragment>
         )
     }
 }

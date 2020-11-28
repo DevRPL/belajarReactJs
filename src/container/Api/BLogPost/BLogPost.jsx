@@ -151,15 +151,23 @@ class BLogPost extends Component {
   render = () => {
     return (
 		<Fragment>
-
-		<div className="form-add-post">
-			<input type="text" name="title" onChange={this.handleFormChange} value={this.state.fromBLogPost.title}/><br></br><br></br> 
-			<input type="text" name="body" onChange={this.handleFormChange}  value={this.state.fromBLogPost.body}/><br></br><br></br> 
-			<textarea name="description" onChange={this.handleFormChange} value={this.state.fromBLogPost.description}></textarea> <br></br><br></br>
-			<button onClick={this.handleSubmit}>
-				{ !this.state.isUpdate ? 'Save': 'Update' }
-			</button>
-		</div><br></br> <br></br>
+			<div className="container pt-3">
+				<div className="form-group">
+					<label htmlFor="title">Title</label>
+					<input type="text" className="form-control" name="title" onChange={this.handleFormChange} value={this.state.fromBLogPost.title} placeholder="Enter Title" />
+				</div>
+				<div className="form-group">
+					<label htmlFor="body">Body</label>
+					<input type="text" name="body" onChange={this.handleFormChange}  value={this.state.fromBLogPost.body} className="form-control" placeholder="Body" />
+				</div>
+				<div className="form-group">
+					<label htmlFor="description">description</label>
+					<input type="text" name="description" onChange={this.handleFormChange} value={this.state.fromBLogPost.description} className="form-control" placeholder="Description" />
+				</div>
+				<button onClick={this.handleSubmit} className="btn btn-primary">
+					{ !this.state.isUpdate ? 'Save': 'Update' }
+				</button>
+			</div>
 
 			{
 				this.state.post.map(post => {
