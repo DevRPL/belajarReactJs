@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Product.css';
 import CardComponent from './CardComponent';
+import { GlobalConsumer } from '../../Context/Context';
 
 class ProductComponent extends Component {
 
@@ -15,15 +16,16 @@ class ProductComponent extends Component {
     } */
     
     render() {
+        console.log(this)
         return (
             <div className="p-3">
                 {/* <CardComponent onCounterChange={(value) => this.handleCounterChange(value)}> */}
                 <CardComponent>
-                    <span className="badge-primary">{0}</span>
+                    <span className="badge-primary">{this.props.state.total}</span>
                 </CardComponent>
             </div>
         )
     }
 }
 
-export default ProductComponent;
+export default GlobalConsumer(ProductComponent);

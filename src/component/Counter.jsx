@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import { RootContext } from '../container/Default/DynamicStateLessComponent';
-import ActionType from '../Redux/reducer/GlobalActionType';
+import { GlobalConsumer } from '../Context/Context.jsx';
+import ActionType from '../Redux/reducer/GlobalActionType.js';
 
 class Counter extends Component {
     
@@ -31,22 +31,15 @@ class Counter extends Component {
     } */
 
     render() {
+        console.log(this.props.state.total)
         return(
-            <RootContext.Consumer>
-                {
-                    value => {
-                        return (
-                            <Fragment>
-                                <button className="minus" onClick={() => value.dispatch({type:ActionType.MINUSORDER})}>-</button>
-                                <input type="text" value={value.state.total} readOnly/>
-                                <button className="plus" onClick={() => value.dispatch({type:ActionType.PLUSORDER})}>+</button>
-                            </Fragment>
-                        )    
-                    }
-                }
-            </RootContext.Consumer>
+            <Fragment>
+                <button className="minus" onClick={() => this.props.dispatch({type:ActionType.MINUSORDER})}>-</button>
+                <input type="text" value={this.props.state.total} readOnly/>
+                <button className="plus" onClick={() => this.props.dispatch({type:ActionType.PLUSORDER})}>+</button>
+            </Fragment>
         )
     }
 }
 
-export default Counter;
+export default GlobalConsumer(Counter);

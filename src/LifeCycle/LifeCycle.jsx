@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { RootContext } from '../container/Default/DynamicStateLessComponent';
+import { GlobalConsumer } from '../Context/Context.jsx';
 import './LifeCycle.css';
 
 class LifeCycle extends Component {
@@ -53,21 +53,13 @@ class LifeCycle extends Component {
     
     render() {
         return(
-                <RootContext.Consumer>
-                    {
-                        value => {
-                            return (
-                                <div>
-                                    <button className="btn" onClick={this.changeCount}>LifeCycle {this.state.count}</button>
-                                    <hr></hr>
-                                    <p>total order : {value.state.total}</p>
-                                </div>
-                            )
-                        }
-                    }
-                </RootContext.Consumer>
+                <div>
+                    <button className="btn" onClick={this.changeCount}>LifeCycle {this.state.count}</button>
+                    <hr></hr>
+                    <p>total order : {this.props.state.total}</p>
+                </div>
         )
     }
 }
 
-export default LifeCycle;
+export default GlobalConsumer(LifeCycle);
