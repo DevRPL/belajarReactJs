@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { RootContext } from '../container/Default/DynamicStateLessComponent';
 import './LifeCycle.css';
 
 class LifeCycle extends Component {
@@ -53,18 +53,21 @@ class LifeCycle extends Component {
     
     render() {
         return(
-            <div>
-                <button className="btn" onClick={this.changeCount}>LifeCycle {this.state.count}</button>
-                <hr></hr>
-                <p>total order : {this.props.order}</p>
-            </div>
+                <RootContext.Consumer>
+                    {
+                        value => {
+                            return (
+                                <div>
+                                    <button className="btn" onClick={this.changeCount}>LifeCycle {this.state.count}</button>
+                                    <hr></hr>
+                                    <p>total order : {value.state.total}</p>
+                                </div>
+                            )
+                        }
+                    }
+                </RootContext.Consumer>
         )
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        order: state.total
-    }
-}
-export default connect(mapStateToProps)(LifeCycle);
+export default LifeCycle;

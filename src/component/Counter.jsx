@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
+import { RootContext } from '../container/Default/DynamicStateLessComponent';
 import ActionType from '../Redux/reducer/GlobalActionType';
 
 class Counter extends Component {
@@ -32,26 +32,21 @@ class Counter extends Component {
 
     render() {
         return(
-            <Fragment>
-                <button className="minus" onClick={this.props.handleMinus}>-</button>
-                <input type="text" value={this.props.order} readOnly/>
-                <button className="plus" onClick={this.props.handlePlus}>+</button>
-            </Fragment>
+            <RootContext.Consumer>
+                {
+                    value => {
+                        return (
+                            <Fragment>
+                                <button className="minus" onClick={() => value.dispatch({type:ActionType.MINUSORDER})}>-</button>
+                                <input type="text" value={value.state.total} readOnly/>
+                                <button className="plus" onClick={() => value.dispatch({type:ActionType.PLUSORDER})}>+</button>
+                            </Fragment>
+                        )    
+                    }
+                }
+            </RootContext.Consumer>
         )
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        order: state.total
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        handlePlus: () => {dispatch({type: ActionType.PLUSORDER})},
-        handleMinus: () => {dispatch({type: ActionType.MINUSORDER})}
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+export default Counter;
