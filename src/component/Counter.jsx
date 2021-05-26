@@ -32,9 +32,11 @@ class Counter extends Component {
     render() {
         return(
             <Fragment>
-                <button className="minus" onClick={this.handleMinus}>-</button>
-                <input type="text" value={this.state.order} readOnly/>
-                <button className="plus" onClick={this.handlePlus}>+</button>
+                <div className="input-group mb-3">
+                    <button className="minus input-group-text" onClick={this.handleMinus}>-</button>
+                    <input type="text"  className="form-control" value={this.state.order} readOnly/>
+                    <button className="plus input-group-text" onClick={this.handlePlus}>+</button>
+                </div>
             </Fragment>
         )
     }

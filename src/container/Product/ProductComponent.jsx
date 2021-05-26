@@ -18,7 +18,7 @@ class ProductComponent extends Component {
         return (
             <div className="p-3">
                 <CardComponent onCounterChange={(value) => this.handleCounterChange(value)}>
-                    <span className="badge-primary">{this.state.order}</span>
+                    <span className="badge bg-primary text-white">{this.state.order}</span>
                 </CardComponent>
             </div>
         )
